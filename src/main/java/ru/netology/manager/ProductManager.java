@@ -27,13 +27,7 @@ public class ProductManager {
     }
 
     public void removeById(int id) {
-        try {
-            System.out.println("before find");
-            repository.findById(id);
-            System.out.println("after find");
-        } catch (NotFoundException e) {
-            System.out.println("specific catch");
-        }
+        repository.findById(id);
         repository.removeById(id);
 
     }

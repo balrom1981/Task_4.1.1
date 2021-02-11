@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import ru.netology.domain.Book;
 import ru.netology.domain.Product;
 import ru.netology.domain.TShirt;
+import ru.netology.exception.NotFoundException;
 import ru.netology.repository.ProductRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,9 +23,10 @@ class ProductManagerTest {
         repository.save(third);
         repository.save(fourth);
         ProductManager managers = new ProductManager(repository);
-        managers.removeById(4);
+        int id = 2;
+        managers.removeById(id);
         Product[] actual = managers.getAll();
-        Product[] expected = new Product[]{first, second, third};
+        Product[] expected = new Product[]{first, third, fourth};
 
     }
 
@@ -35,8 +37,8 @@ class ProductManagerTest {
         repository.save(third);
         repository.save(fourth);
         ProductManager managers = new ProductManager(repository);
-        managers.removeById(5);
-        Product[] actual = managers.getAll();
-        Product[] expected = new Product[]{first, second, third,fourth};
+        int id = 7;
+        assertThrows(NotFoundException.class, () -> managers.removeById(id));
+
     }
 }
