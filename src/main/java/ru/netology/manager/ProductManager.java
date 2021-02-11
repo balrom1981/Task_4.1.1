@@ -31,7 +31,6 @@ public class ProductManager {
             throw new NotFoundException("Element with id: " + id + " not found");
 
         }
-        ;
         repository.removeById(id);
 
     }
