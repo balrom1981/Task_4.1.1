@@ -27,10 +27,12 @@ public class ProductManager {
     }
 
     public void removeById(int id) {
-        repository.findById(id);
+        if (repository.findById(id) == null) {
+            throw new NotFoundException("Element with id: " + id + " not found");
+
+        }
+        ;
         repository.removeById(id);
 
     }
-
-
 }
