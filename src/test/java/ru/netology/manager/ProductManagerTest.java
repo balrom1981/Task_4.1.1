@@ -26,7 +26,8 @@ class ProductManagerTest {
         int id = 2;
         managers.removeById(id);
         Product[] actual = managers.getAll();
-        Product[] expected = new Product[]{first, third, fourth};
+        Product[] expected = new Product[]{fourth, third,first};
+        assertArrayEquals(actual, expected);
 
     }
 
@@ -37,7 +38,7 @@ class ProductManagerTest {
         repository.save(third);
         repository.save(fourth);
         ProductManager managers = new ProductManager(repository);
-        int id = 7;
+        int id = 9;
         assertThrows(NotFoundException.class, () -> managers.removeById(id));
 
     }
